@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PlayerJS Demo</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; padding: 24px; }
+    .wrap { max-width: 960px; margin: 0 auto; }
+    .card { border: 1px solid rgba(0,0,0,.12); border-radius: 14px; padding: 16px; }
+    .player { aspect-ratio: 16/9; width: 100%; background: #000; border-radius: 12px; overflow: hidden; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    button { padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,.14); background: white; cursor: pointer; }
+    button:active { transform: translateY(1px); }
+    .muted { opacity: .7; font-size: 13px; margin-top: 10px; }
+    code { background: rgba(0,0,0,.06); padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 style="margin:0 0 12px">PlayerJS demo</h1>
+
+    <div class="card">
+      <!-- контейнер плеера -->
+      <div id="player" class="player"></div>
+
+      <div class="row">
+        <button type="button" onclick="p.api('play')">Play</button>
+        <button type="button" onclick="p.api('pause')">Pause</button>
+        <button type="button" onclick="p.api('stop')">Stop</button>
+        <button type="button" onclick="p.api('seek', 10)">Seek 10s</button>
+        <button type="button" onclick="p.api('volume', 30)">Vol 30%</button>
+        <button type="button" onclick="p.api('volume', 80)">Vol 80%</button>
+      </div>
+
+      <div class="muted">
+        Файлы рядом: <code>playerjs.js</code> и <code>demo.mp4</code> (или поменяй путь в коде).
+      </div>
+    </div>
+  </div>
+
+  <!-- Подключение playerjs из этой же папки -->
+  <script src="./playerjs.js"></script>
+  <script>
+    // Если у тебя файл называется playerjs.min.js — просто поменяй src выше.
+    // Видео тоже рядом: ./demo.mp4
+    var p = new Playerjs({
+      id: "player",
+      file: "./demo.mp4"
+    });
+
+    // Немного логов (полезно для демо)
+    p.on('play', function(){ console.log('play'); });
+    p.on('pause', function(){ console.log('pause'); });
+    p.on('ended', function(){ console.log('ended'); });
+    p.on('timeupdate', function(t){ /* console.log('t=', t); */ });
+  </script>
+</body>
+</html>
