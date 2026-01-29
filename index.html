@@ -24,17 +24,8 @@
       <!-- контейнер плеера -->
       <div id="player" class="player"></div>
 
-      <div class="row">
-        <button type="button" onclick="p.api('play')">Play</button>
-        <button type="button" onclick="p.api('pause')">Pause</button>
-        <button type="button" onclick="p.api('stop')">Stop</button>
-        <button type="button" onclick="p.api('seek', 10)">Seek 10s</button>
-        <button type="button" onclick="p.api('volume', 30)">Vol 30%</button>
-        <button type="button" onclick="p.api('volume', 80)">Vol 80%</button>
-      </div>
-
       <div class="muted">
-        Файлы рядом: <code>playerjs.js</code> и <code>demo.mp4</code> (или поменяй путь в коде).
+        Демо PlayerJS
       </div>
     </div>
   </div>
@@ -48,12 +39,6 @@
       id: "player",
       file: "./demo.mp4"
     });
-
-    // Немного логов (полезно для демо)
-    p.on('play', function(){ console.log('play'); });
-    p.on('pause', function(){ console.log('pause'); });
-    p.on('ended', function(){ console.log('ended'); });
-    p.on('timeupdate', function(t){ /* console.log('t=', t); */ });
   </script>
 </body>
 </html>
